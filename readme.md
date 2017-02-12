@@ -31,4 +31,5 @@ Returns the parsed YAML.
 
 ## Related
 
+- [write-yaml-file](https://github.com/zkochan/write-yaml-file) - Stringify and write YAML to a file atomically
 - [load-json-file](https://github.com/sindresorhus/load-json-file) - Read and parse a JSON file
