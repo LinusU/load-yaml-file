@@ -1,17 +1,16 @@
 /* eslint-env mocha */
 
-const assert = require('assert')
-const loadYamlFile = require('./')
+import assert from 'assert'
+import { loadYamlFile, loadYamlFileSync } from './index.js'
 
 describe('load-yaml-file', () => {
-  it('loadYamlFile()', () => {
-    return loadYamlFile('foo.yml').then(data => {
-      assert.deepStrictEqual(data, { foo: true })
-    })
+  it('loadYamlFile', async () => {
+    const data = await loadYamlFile('foo.yml')
+    assert.deepStrictEqual(data, { foo: true })
   })
 
-  it('loadYamlFile.sync()', () => {
-    const data = loadYamlFile.sync('foo.yml')
+  it('loadYamlFileSync', () => {
+    const data = loadYamlFileSync('foo.yml')
     assert.deepStrictEqual(data, { foo: true })
   })
 })
