@@ -11,23 +11,34 @@ npm install --save load-yaml-file
 ## Usage
 
 ```js
-const loadYamlFile = require('load-yaml-file')
+import { loadYamlFile } from 'load-yaml-file'
 
-loadYamlFile('foo.yml').then(data => {
-  console.log(data)
-  //=> {foo: true}
-})
+const data = await loadYamlFile('foo.yml')
+console.log(data)
+//=> {foo: true}
+```
+
+### Sync
+
+```js
+import { loadYamlFileSync } from 'load-yaml-file'
+
+const data = loadYamlFileSync('foo.yml')
+console.log(data)
+//=> {foo: true}
 ```
 
 ## API
 
-### loadYamlFile(filepath)
+### `loadYamlFile(path)`
 
-Returns a promise for the parsed YAML.
+- `path` (`string | Buffer | URL`, required)
+- returns `Promise<unknown>` - a promise for the parsed YAML
 
-### loadYamlFile.sync(filepath)
+### `loadYamlFileSync(path)`
 
-Returns the parsed YAML.
+- `path` (`string | Buffer | URL`, required)
+- returns `unknown` - the parsed YAML
 
 ## Related
 

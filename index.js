@@ -1,11 +1,15 @@
-'use strict'
+import fs from 'graceful-fs'
+import stripBom from 'strip-bom'
+import yaml from 'js-yaml'
 
-const fs = require('graceful-fs')
-const pify = require('pify')
-const stripBom = require('strip-bom')
-const yaml = require('js-yaml')
+function parse (data) {
+  return yaml.load(stripBom(data))
+}
 
-const parse = data => yaml.safeLoad(stripBom(data))
+export async function loadYamlFile (path) {
+  return parse(await fs.promises.readFile(path, 'utf8'))
+}
 
-module.exports = fp => pify(fs.readFile)(fp, 'utf8').then(data => parse(data))
-module.exports.sync = fp => parse(fs.readFileSync(fp, 'utf8'))
+export function loadYamlFileSync (path) {
+  return parse(fs.readFileSync(path, 'utf8'))
+}
